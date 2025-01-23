@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,11 @@ public class User {
 
     @Column(nullable = false)
     private boolean emailVerified;
+
+    @Column(unique = true)
+    private String verificationToken;
+
+    private LocalDateTime tokenExpiry;
 
     private String oauthProvider;
     private String oauthId;
