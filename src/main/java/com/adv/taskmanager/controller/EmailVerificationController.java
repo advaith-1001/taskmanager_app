@@ -23,6 +23,10 @@ public class EmailVerificationController {
         User user = userRepo.findByVerificationToken(token)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid or Expired Verification Token."));
 
+        if (user.isEmailVerified()) {
+            return ResponseEntity.badRequest().body("Email already verified.");
+        }
+
         user.setEmailVerified(true);
         user.setVerificationToken(null);
         userRepo.save(user);

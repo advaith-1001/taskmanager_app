@@ -24,7 +24,7 @@ public class RegistrationController {
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody UserRegistrationDto registrationDto) {
         registrationService.registerUser(registrationDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body("User Registered Succesfully!");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Please check your inbox for verification link.");
     }
 
 }
