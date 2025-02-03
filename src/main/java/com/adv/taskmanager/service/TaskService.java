@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -85,6 +87,7 @@ public class TaskService {
         }
 
         task.setStatus(TaskStatus.COMPLETED);
+        task.setCompletedAt(LocalDateTime.now());
         return taskRepo.save(task);
     }
 
@@ -102,6 +105,23 @@ public class TaskService {
 
         task.setStatus(TaskStatus.IN_PROGRESS);
         return taskRepo.save(task);
+    }
+
+    public Long getCompletedTasksCount(Long userId, LocalDateTime startDate, LocalDateTime endDate) {
+        return taskRepo.countCompletedTasks(userId, startDate, endDate);
+    }
+
+    public Map<String, Long> getTaskCompletionMetrics(Long userId, LocalDateTime startDate, LocalDateTime endDate) {
+        Long completedOnTime = taskRepo.countOnTimeCompletedTasks(userId, startDate, endDate);
+        Long completedLate = taskRepo.countLateCompletedTasks(userId, startDate, endDate);
+        Long totalCompleted = completedOnTime + completedLate;
+
+        Map<String, Long> metrics = new HashMap<>();
+        metrics.put("completedOnTime", completedOnTime);
+        metrics.put("completedLate", completedLate);
+        metrics.put("totalCompleted", totalCompleted);
+
+        return metrics;
     }
 
 

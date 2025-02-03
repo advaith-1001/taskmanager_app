@@ -34,7 +34,7 @@ public class RegistrationService {
         user.setEmail(registrationDto.getEmail());
 
         // Handle different cases for password vs OAuth
-        if (registrationDto.getOauthProvider() == null) {
+        if (registrationDto.getOauthProvider() == null || registrationDto.getOauthProvider().isEmpty()) {
 
 
             String token = UUID.randomUUID().toString();

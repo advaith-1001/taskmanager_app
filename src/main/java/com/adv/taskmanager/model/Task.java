@@ -34,6 +34,9 @@ public class Task {
 
     private Long timeSpent;
 
+    @Column
+    private LocalDateTime completedAt;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TaskStatus status;
