@@ -8,25 +8,27 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService{
+public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UserRepo userRepo;
+    private final UserRepo userRepository;
 
-    public CustomUserDetailsService(UserRepo userRepo) {
-        this.userRepo = userRepo;
+    public CustomUserDetailsService(UserRepo userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepo.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User with Specified email not found."));
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        if (!user.isEmailVerified()) {
-            throw new IllegalStateException("Email Not verified please try again.");
-        }
-
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), new ArrayList<>());
+        return new org.springframework.security.core.userdetails.User(
+                user.getEmail(),
+                user.getPassword(),
+                List.of() // Empty list as we are not using roles
+        );
     }
 }

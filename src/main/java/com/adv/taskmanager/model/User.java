@@ -41,6 +41,8 @@ public class User {
     private String oauthProvider;
     private String oauthId;
 
+    private String role;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks = new ArrayList<>();
-}
+    }
