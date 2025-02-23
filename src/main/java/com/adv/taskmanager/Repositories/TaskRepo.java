@@ -42,4 +42,18 @@ public interface TaskRepo extends JpaRepository<Task, Long> {
             @Param("endDate") LocalDateTime endDate
     );
 
+    @Query(value = """
+    SELECT EXTRACT(YEAR FROM t.completed_at) AS year,
+           EXTRACT(MONTH FROM t.completed_at) AS month,
+           COALESCE(SUM(t.time_spent), 0)
+    FROM task t
+    WHERE t.user_id = :userId
+      AND t.completed_at BETWEEN :startDate AND :endDate
+    GROUP BY year, month
+    ORDER BY year, month
+""", nativeQuery = true)
+    List<Object[]> getTimeSpentPerYearRange(@Param("userId") Long userId,
+                                            @Param("startDate") LocalDateTime startDate,
+                                            @Param("endDate") LocalDateTime endDate);
+
 }

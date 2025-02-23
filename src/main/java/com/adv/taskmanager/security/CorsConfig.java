@@ -22,7 +22,7 @@ public class CorsConfig implements WebMvcConfigurer {
         List<String> allowedOrigins = Arrays.asList("http://localhost:5173");
         configuration.setAllowedOrigins(allowedOrigins);
 
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST")); // Or other methods as needed
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE")); // Or other methods as needed
         configuration.setAllowedHeaders(Arrays.asList("Content-Type")); // Or other headers as needed
         configuration.setAllowCredentials(true); // If using cookies for authentication
 

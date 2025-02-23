@@ -18,6 +18,7 @@ public class TaskDto {
     private String title;
     private String description;
     private LocalDateTime createdAt;
+    private LocalDateTime startedAt;
     private LocalDateTime dueDateTime;
     private String status;
     private String priority;
@@ -29,10 +30,12 @@ public class TaskDto {
         this.title = task.getTitle();
         this.description = task.getDescription();
         this.createdAt = task.getCreatedAt();
+        this.startedAt = task.getStartedAt();
         this.dueDateTime = task.getDueDateTime();
         this.timeSpent = task.getTimeSpent();
         this.status = String.valueOf(task.getStatus());
         this.priority = String.valueOf(task.getPriority());
         this.categoryId = (task.getCategory() != null) ? task.getCategory().getId() : null;
     }
+
 }

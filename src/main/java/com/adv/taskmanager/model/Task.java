@@ -30,6 +30,8 @@ public class Task {
 
     private LocalDateTime createdAt;
 
+    private LocalDateTime startedAt;
+
     private LocalDateTime dueDateTime;
 
     private Long timeSpent;
