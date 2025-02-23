@@ -2,7 +2,7 @@
 **Tech Stack:** Spring Boot | PostgreSQL | JWT Authentication | OAuth | REST API  
 
 This is the backend for the **Task Manager with Productivity Tracker**, providing a RESTful API for managing tasks, authentication, and analytics.  
-The frontend is built with React and can be found [here]([https://github.com/yourusername/frontend-repo](https://github.com/advaith-1001/task-manager-frontend))  
+The frontend is built with React and can be found ### [here]([https://github.com/yourusername/frontend-repo](https://github.com/advaith-1001/task-manager-frontend))  
 
 ---
 
